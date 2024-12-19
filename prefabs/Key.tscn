@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://2kvpty8l5df6"]
+
+[ext_resource type="Shader" path="res://Key.gdshader" id="1_puoi2"]
+[ext_resource type="Texture2D" uid="uid://cbsrum1ln6eum" path="res://img/lemon.png" id="2_a2g4y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l4f0e"]
+shader = ExtResource("1_puoi2")
+shader_parameter/speed = 1.0
+shader_parameter/size = 0.3
+shader_parameter/movement_strength = 0.1
+
+[node name="Item" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_l4f0e")
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_a2g4y")

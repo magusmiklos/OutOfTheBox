@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://brfvqmb7dxopq"]
+
+[ext_resource type="Texture2D" uid="uid://cbsrum1ln6eum" path="res://img/lemon.png" id="1_t5nk8"]
+
+[node name="Item" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_t5nk8")

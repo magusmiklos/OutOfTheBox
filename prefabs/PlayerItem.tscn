@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbpvmf2dbj0q8"]
+
+[ext_resource type="Texture2D" uid="uid://cceo4mqbtobv3" path="res://img/pink.png" id="1_s6t64"]
+
+[node name="Item" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_s6t64")
