@@ -52,6 +52,8 @@ layout_mode = 2
 text = "4"
 script = ExtResource("3_e14wt")
 
+[node name="Node" type="Node" parent="Node2D/VBoxContainer/Button4"]
+
 [node name="Button5" type="Button" parent="Node2D/VBoxContainer" groups=["4"]]
 layout_mode = 2
 text = "5"

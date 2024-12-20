@@ -6,6 +6,8 @@ const PINK = preload("res://img/pink.png")
 
 var is_on = false
 
+var release_click = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -13,14 +15,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Input.is_action_just_released("click"):
+		release_click = true
 
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if Global.start:
 		return
 	
-	if Input.is_action_just_pressed("click"):
+	if Input.is_action_pressed("click") and release_click:
+		release_click = false
+		
 		var inds = get_parent().get_groups()[0].split(" ")
 		
 		#print(inds)
