@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://x8am7qlldoo0"]
+
+[ext_resource type="Shader" path="res://main.gdshader" id="1_cbw4j"]
+[ext_resource type="Texture2D" uid="uid://78w4bsg8euhh" path="res://img/dark.png" id="2_vnuuv"]
+[ext_resource type="Script" path="res://code/cam.gd" id="3_1wq5v"]
+[ext_resource type="Script" path="res://code/create.gd" id="3_r7f7a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n7oyy"]
+shader = ExtResource("1_cbw4j")
+shader_parameter/color_one = Color(0.194588, 0.176776, 0.285473, 1)
+shader_parameter/color_two = Color(0, 0, 0, 1)
+shader_parameter/angle = 20.575
+shader_parameter/line_count = 50.0
+shader_parameter/speed = 1.0
+shader_parameter/blur = 0.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Back" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_n7oyy")
+scale = Vector2(20, 20)
+texture = ExtResource("2_vnuuv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_1wq5v")
+
+[node name="Create" type="Node2D" parent="."]
+position = Vector2(-945, -522)
+script = ExtResource("3_r7f7a")

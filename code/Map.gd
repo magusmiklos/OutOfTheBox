@@ -7,6 +7,10 @@ const SOLID = preload("res://prefabs/Solid.tscn")
 const ITEM = preload("res://prefabs/item.tscn")
 const PLAYER_ITEM = preload("res://prefabs/PlayerItem.tscn")
 @onready var camera_2d = $"../Camera2D"
+@onready var map_timer = $"../MapTimer"
+@onready var label = $"../Camera2D/Menu/MarginContainer2/VBoxContainer2/GridContainer/Label"
+@onready var h_slider = $"../Camera2D/Menu/MarginContainer2/VBoxContainer2/GridContainer/HSlider"
+
 
 
 var sprite = null
@@ -16,6 +20,8 @@ var calc = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	create_map()
+	map_timer.wait_time = Global.speed
+	label.text = str(int(h_slider.value*100))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -159,3 +165,15 @@ func create_map():
 				if flag:
 					create_map()
 							
+
+
+func _on_h_slider_value_changed(value):
+	Global.speed = 1.0-value
+	map_timer.wait_time = 1.0-value
+	print(Global.speed)
+	
+	var label_text = str(int(value*100))
+	if len(label_text) == 1:
+		label.text = "  " + label_text
+	else:
+		label.text = label_text

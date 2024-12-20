@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdqkf547k2ugp"]
+[gd_scene load_steps=6 format=3 uid="uid://cdqkf547k2ugp"]
 
 [ext_resource type="Shader" path="res://main.gdshader" id="1_ies43"]
 [ext_resource type="Texture2D" uid="uid://78w4bsg8euhh" path="res://img/dark.png" id="2_hmhp4"]
 [ext_resource type="Script" path="res://code/map_select_btn.gd" id="3_e14wt"]
+[ext_resource type="Script" path="res://code/create_select.gd" id="4_83i2v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pqq5u"]
 shader = ExtResource("1_ies43")
@@ -52,8 +53,6 @@ layout_mode = 2
 text = "4"
 script = ExtResource("3_e14wt")
 
-[node name="Node" type="Node" parent="Node2D/VBoxContainer/Button4"]
-
 [node name="Button5" type="Button" parent="Node2D/VBoxContainer" groups=["4"]]
 layout_mode = 2
 text = "5"
@@ -79,6 +78,24 @@ layout_mode = 2
 text = "9"
 script = ExtResource("3_e14wt")
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="Node2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = 55.0
+offset_right = 30.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Node2D/VBoxContainer2"]
+layout_mode = 2
+text = "Create"
+script = ExtResource("4_83i2v")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="pressed" from="Node2D/VBoxContainer/Button" to="Node2D/VBoxContainer/Button" method="_on_pressed"]
@@ -90,3 +107,4 @@ script = ExtResource("3_e14wt")
 [connection signal="pressed" from="Node2D/VBoxContainer/Button7" to="Node2D/VBoxContainer/Button7" method="_on_pressed"]
 [connection signal="pressed" from="Node2D/VBoxContainer/Button8" to="Node2D/VBoxContainer/Button8" method="_on_pressed"]
 [connection signal="pressed" from="Node2D/VBoxContainer/Button9" to="Node2D/VBoxContainer/Button9" method="_on_pressed"]
+[connection signal="pressed" from="Node2D/VBoxContainer2/Button" to="Node2D/VBoxContainer2/Button" method="_on_pressed"]
