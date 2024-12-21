@@ -20,8 +20,10 @@ var calc = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	create_map()
+	h_slider.value = 1.0-Global.speed
 	map_timer.wait_time = Global.speed
 	label.text = str(int(h_slider.value*100))
+	get_key_count()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -132,25 +134,25 @@ func create_map():
 			if Global.map[i][j] == "F":
 				if i > 0:
 					if Global.map[i-1][j] == "P":
-						if Global.keys == Global.key_map[Global.current_map]:
+						if Global.keys == Global.key_count:
 							Global.keys = 0
 							Global.reset_rules()
 							get_tree().change_scene_to_file("res://scenes/map_selector.tscn")
 				if j > 0:
 					if Global.map[i][j+1] == "P":
-						if Global.keys == Global.key_map[Global.current_map]:
+						if Global.keys == Global.key_count:
 							Global.keys = 0
 							Global.reset_rules()
 							get_tree().change_scene_to_file("res://scenes/map_selector.tscn")
 				if j < len(Global.map[i])-1:
 					if Global.map[i][j-1] == "P":
-						if Global.keys == Global.key_map[Global.current_map]:
+						if Global.keys == Global.key_count:
 							Global.keys = 0
 							Global.reset_rules()
 							get_tree().change_scene_to_file("res://scenes/map_selector.tscn")
 				if i < len(Global.map):
 					if Global.map[i+1][j] == "P":
-						if Global.keys == Global.key_map[Global.current_map]:
+						if Global.keys == Global.key_count:
 							Global.keys = 0
 							Global.reset_rules()
 							get_tree().change_scene_to_file("res://scenes/map_selector.tscn")
@@ -170,10 +172,16 @@ func create_map():
 func _on_h_slider_value_changed(value):
 	Global.speed = 1.0-value
 	map_timer.wait_time = 1.0-value
-	print(Global.speed)
 	
 	var label_text = str(int(value*100))
 	if len(label_text) == 1:
 		label.text = "  " + label_text
 	else:
 		label.text = label_text
+
+func get_key_count():
+	Global.key_count = 0
+	for i in range(len(Global.map)):
+		for j in range(len(Global.map[i])):
+			if Global.map[i][j] == "K":
+				Global.key_count += 1

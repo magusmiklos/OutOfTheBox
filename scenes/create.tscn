@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://x8am7qlldoo0"]
+[gd_scene load_steps=17 format=3 uid="uid://x8am7qlldoo0"]
 
 [ext_resource type="Shader" path="res://main.gdshader" id="1_cbw4j"]
 [ext_resource type="Texture2D" uid="uid://78w4bsg8euhh" path="res://img/dark.png" id="2_vnuuv"]
@@ -9,6 +9,12 @@
 [ext_resource type="Script" path="res://code/LoadCreatedMapToMain.gd" id="7_2fy75"]
 [ext_resource type="Script" path="res://code/createExitBtn.gd" id="7_m7net"]
 [ext_resource type="Texture2D" uid="uid://d1nxhlxbfs018" path="res://img/night.png" id="7_o6sl2"]
+[ext_resource type="Texture2D" uid="uid://cpqh00rgclxt6" path="res://img/darkBtn.png" id="9_chxul"]
+[ext_resource type="Texture2D" uid="uid://c5iqjf4iee0a4" path="res://img/orangeBtn.png" id="11_b804h"]
+[ext_resource type="Texture2D" uid="uid://byo2qfbykqyph" path="res://img/blueBtn.png" id="12_g8ims"]
+[ext_resource type="Texture2D" uid="uid://bm80vpxne6xoj" path="res://img/pinkBtn.png" id="13_rtfg4"]
+[ext_resource type="Texture2D" uid="uid://1acque4a4pn7" path="res://img/lemonBtn.png" id="14_3tydg"]
+[ext_resource type="Texture2D" uid="uid://cfam6xy7eyfhq" path="res://img/keyBtn.png" id="15_xmrlg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n7oyy"]
 shader = ExtResource("1_cbw4j")
@@ -33,15 +39,15 @@ script = ExtResource("3_r7f7a")
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_1wq5v")
 
-[node name="Menu" type="Node2D" parent="."]
+[node name="Menu" type="Node2D" parent="Camera2D"]
 visible = false
 script = ExtResource("6_ju3iy")
 
-[node name="Sprite2D" type="Sprite2D" parent="Menu"]
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/Menu"]
 scale = Vector2(10, 10)
 texture = ExtResource("7_o6sl2")
 
-[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+[node name="MarginContainer" type="MarginContainer" parent="Camera2D/Menu"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -54,17 +60,17 @@ offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Menu/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Button" type="Button" parent="Menu/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Camera2D/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Play"
 script = ExtResource("7_2fy75")
 
-[node name="Button2" type="Button" parent="Menu/MarginContainer/VBoxContainer"]
+[node name="Button2" type="Button" parent="Camera2D/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
 script = ExtResource("7_m7net")
@@ -87,33 +93,39 @@ size_flags_vertical = 8
 
 [node name="Button" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer" groups=["X"]]
 layout_mode = 2
-text = "1"
+icon = ExtResource("9_chxul")
 script = ExtResource("5_1ss3o")
 
 [node name="Button2" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer" groups=["S"]]
 layout_mode = 2
-text = "2"
+icon = ExtResource("11_b804h")
 script = ExtResource("5_1ss3o")
 
 [node name="Button3" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer" groups=["I"]]
 layout_mode = 2
-text = "2"
+icon = ExtResource("12_g8ims")
 script = ExtResource("5_1ss3o")
 
 [node name="Button4" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer" groups=["P"]]
 layout_mode = 2
-text = "4"
+icon = ExtResource("13_rtfg4")
 script = ExtResource("5_1ss3o")
 
 [node name="Button5" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer" groups=["F"]]
 layout_mode = 2
-text = "4"
+icon = ExtResource("14_3tydg")
 script = ExtResource("5_1ss3o")
 
-[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/Button" to="Menu/MarginContainer/VBoxContainer/Button" method="_on_pressed"]
-[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/Button2" to="Menu/MarginContainer/VBoxContainer/Button2" method="_on_pressed"]
+[node name="Button6" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer" groups=["K"]]
+layout_mode = 2
+icon = ExtResource("15_xmrlg")
+script = ExtResource("5_1ss3o")
+
+[connection signal="pressed" from="Camera2D/Menu/MarginContainer/VBoxContainer/Button" to="Camera2D/Menu/MarginContainer/VBoxContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="Camera2D/Menu/MarginContainer/VBoxContainer/Button2" to="Camera2D/Menu/MarginContainer/VBoxContainer/Button2" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button" to="CanvasLayer/MarginContainer/HBoxContainer/Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button2" to="CanvasLayer/MarginContainer/HBoxContainer/Button2" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button3" to="CanvasLayer/MarginContainer/HBoxContainer/Button3" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button4" to="CanvasLayer/MarginContainer/HBoxContainer/Button4" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button5" to="CanvasLayer/MarginContainer/HBoxContainer/Button5" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button6" to="CanvasLayer/MarginContainer/HBoxContainer/Button6" method="_on_pressed"]

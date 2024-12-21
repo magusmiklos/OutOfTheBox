@@ -5,7 +5,7 @@ extends Node
 # P => Player
 # S => Solid not movable
 # F => finish door where the player should go
-# K => the player have to pick up this key to be able to open the door the F
+# K => KEY the player have to pick up this key to be able to open the door the F
 # I => ice
 
 var map = null
@@ -224,9 +224,11 @@ var map9 = [
 
 var current_map = null
 var maps = [map1,map2,map3,map4,map5,map6,map7,map8,map9,created_map]
-const key_map = [1,0,0,0,0,2,0,0,1,0]
+var key_count = 0
 
 var keys = 0
+
+var is_create_menu_visible = false
 
 var from = [
 	[

@@ -17,10 +17,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("esc"):
 		if menu.visible:
 			menu.visible = false
-			back.get_material().set_shader_parameter("speed",1)
 		else:
 			menu.visible = true
-			back.get_material().set_shader_parameter("speed",0.1)
+	if !is_player_alive():
+		return
 	if Input.is_action_just_pressed("right") or Input.is_action_just_pressed("left"):
 		var done = false
 		for i in range(len(Global.map)):
@@ -64,3 +64,9 @@ func move_right():
 	Global.map[player_y+fall][player_x+1] = "P" 
 	map.create_map()
 	
+func is_player_alive():
+	for i in range(len(Global.map)):
+		for j in range(len(Global.map[i])):
+			if Global.map[i][j] == "P":
+				return true
+	return false

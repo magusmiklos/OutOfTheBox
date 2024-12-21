@@ -7,6 +7,8 @@ var max_zoom = 3.0
 var min_pos = Vector2(-1000, -800)
 var max_pos = Vector2(1000, 800)
 
+var old_zoom = Vector2(1,1)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,9 +16,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("wup"):
+	if Input.is_action_just_pressed("esc"):
+		if !Global.is_create_menu_visible:
+			old_zoom = zoom
+			zoom = Vector2(1,1)
+		else:
+			zoom = old_zoom
+	
+	if Input.is_action_just_pressed("wup") and !Global.is_create_menu_visible:
 		zoom_in()
-	if Input.is_action_just_pressed("wdown"):
+	if Input.is_action_just_pressed("wdown") and !Global.is_create_menu_visible:
 		zoom_out()
 	
 	var move_vector = Vector2()
