@@ -16,10 +16,10 @@ func _process(delta):
 		queue_redraw() # Ensure the screen is cleared by triggering a redraw
 
 func _draw():
-	if point_a and point_b and !Global.is_create_menu_visible:
+	if point_a and point_b and !Global.is_create_menu_visible and Global.editor_motions:
 		# Calculate the top-left corner of the rectangle
 		var top_left: Vector2 = Vector2(min(point_a.x, point_b.x), min(point_a.y, point_b.y))
 		# Calculate the size of the rectangle
 		var size: Vector2 = Vector2(abs(point_a.x - point_b.x), abs(point_a.y - point_b.y))
 		# Draw the rectangle
-		draw_rect(Rect2(top_left, size), Color(0, 0, 0, 0.3)) # Color can be changed as needed
+		draw_rect(Rect2(top_left, size), Color(0, 0, 0, 0.5)) # Color can be changed as needed

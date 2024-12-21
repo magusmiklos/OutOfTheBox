@@ -9,7 +9,7 @@ const OPACITY = preload("res://img/opacity.png")
 const NULL = preload("res://img/null.png")
 const PURPLE = preload("res://img/purple.png")
 const GRAY = preload("res://img/gray.png")
-
+const BLACK_OPA = preload("res://img/blackOPA.png")
 const KEY = preload("res://Key.gdshader")
 
 # Called when the node enters the scene tree for the first time.
@@ -20,7 +20,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_released("click") and texture == PURPLE:
-		texture = null
+		texture = BLACK_OPA
 
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
@@ -130,7 +130,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		for i in range(len(Global.created_map)):
 			for j in range(len(Global.created_map[i])):
 				if i <= a and i >= x and j <= b and j >= y:
-					get_tree().get_nodes_in_group(str(i)+" "+str(j))[0].get_child(0).texture = null
+					get_tree().get_nodes_in_group(str(i)+" "+str(j))[0].get_child(0).texture = BLACK_OPA
 					get_tree().get_nodes_in_group(str(i)+" "+str(j))[0].get_child(0).material = null
 					Global.created_map[i][j] = "E"
 		
@@ -144,13 +144,13 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 
 func _on_area_2d_mouse_entered():
 	Global.editor_cursor = global_position
-	if texture == null or texture == NULL:
+	if texture == BLACK_OPA:
 		texture = GRAY
 
 
 func _on_area_2d_mouse_exited():
-	if texture == null or texture == NULL or texture == GRAY:
-		texture = null
+	if texture == BLACK_OPA or texture == GRAY:
+		texture = BLACK_OPA
 
 func setSelfTexture(s,editor_selected_block):
 	if editor_selected_block == "X":
@@ -167,6 +167,9 @@ func setSelfTexture(s,editor_selected_block):
 		get_tree().get_nodes_in_group(s)[0].get_child(0).material = null
 	elif editor_selected_block == "F":
 		get_tree().get_nodes_in_group(s)[0].get_child(0).texture = LEMON
+		get_tree().get_nodes_in_group(s)[0].get_child(0).material = null
+	elif editor_selected_block == "E":
+		get_tree().get_nodes_in_group(s)[0].get_child(0).texture = BLACK_OPA
 		get_tree().get_nodes_in_group(s)[0].get_child(0).material = null
 	elif editor_selected_block == "K":
 		get_tree().get_nodes_in_group(s)[0].get_child(0).texture = LEMON

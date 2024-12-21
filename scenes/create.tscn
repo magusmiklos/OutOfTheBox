@@ -38,44 +38,21 @@ texture = ExtResource("2_vnuuv")
 position = Vector2(-945, -522)
 script = ExtResource("3_r7f7a")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("3_1wq5v")
+[node name="MouseRect" type="Node2D" parent="."]
 
-[node name="Menu" type="Node2D" parent="Camera2D"]
-visible = false
-script = ExtResource("6_ju3iy")
+[node name="Control" type="Control" parent="MouseRect"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("16_pryga")
 
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D/Menu"]
-scale = Vector2(10, 10)
-texture = ExtResource("7_o6sl2")
-
-[node name="MarginContainer" type="MarginContainer" parent="Camera2D/Menu"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -26.5
-offset_top = -33.0
-offset_right = 26.5
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Menu/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Button" type="Button" parent="Camera2D/Menu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Play"
-script = ExtResource("7_2fy75")
-
-[node name="Button2" type="Button" parent="Camera2D/Menu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Exit"
-script = ExtResource("7_m7net")
+[node name="Control2" type="Control" parent="MouseRect"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_8wiq4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -123,27 +100,62 @@ layout_mode = 2
 icon = ExtResource("15_xmrlg")
 script = ExtResource("5_1ss3o")
 
-[node name="MouseRect" type="Node2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_1wq5v")
 
-[node name="Control" type="Control" parent="MouseRect"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("16_pryga")
+[node name="Menu" type="Node2D" parent="Camera2D"]
+visible = false
+script = ExtResource("6_ju3iy")
 
-[node name="Control2" type="Control" parent="MouseRect"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("17_8wiq4")
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/Menu"]
+scale = Vector2(10, 10)
+texture = ExtResource("7_o6sl2")
 
+[node name="MarginContainer" type="MarginContainer" parent="Camera2D/Menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -33.0
+offset_right = 26.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Menu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="Camera2D/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+script = ExtResource("7_2fy75")
+
+[node name="Button2" type="Button" parent="Camera2D/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+script = ExtResource("7_m7net")
+
+[connection signal="mouse_entered" from="CanvasLayer/MarginContainer/HBoxContainer/Button" to="CanvasLayer/MarginContainer/HBoxContainer/Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/MarginContainer/HBoxContainer/Button" to="CanvasLayer/MarginContainer/HBoxContainer/Button" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button" to="CanvasLayer/MarginContainer/HBoxContainer/Button" method="_on_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/MarginContainer/HBoxContainer/Button2" to="CanvasLayer/MarginContainer/HBoxContainer/Button2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/MarginContainer/HBoxContainer/Button2" to="CanvasLayer/MarginContainer/HBoxContainer/Button2" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button2" to="CanvasLayer/MarginContainer/HBoxContainer/Button2" method="_on_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/MarginContainer/HBoxContainer/Button3" to="CanvasLayer/MarginContainer/HBoxContainer/Button3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/MarginContainer/HBoxContainer/Button3" to="CanvasLayer/MarginContainer/HBoxContainer/Button3" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button3" to="CanvasLayer/MarginContainer/HBoxContainer/Button3" method="_on_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/MarginContainer/HBoxContainer/Button4" to="CanvasLayer/MarginContainer/HBoxContainer/Button4" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/MarginContainer/HBoxContainer/Button4" to="CanvasLayer/MarginContainer/HBoxContainer/Button4" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button4" to="CanvasLayer/MarginContainer/HBoxContainer/Button4" method="_on_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/MarginContainer/HBoxContainer/Button5" to="CanvasLayer/MarginContainer/HBoxContainer/Button5" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/MarginContainer/HBoxContainer/Button5" to="CanvasLayer/MarginContainer/HBoxContainer/Button5" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button5" to="CanvasLayer/MarginContainer/HBoxContainer/Button5" method="_on_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/MarginContainer/HBoxContainer/Button6" to="CanvasLayer/MarginContainer/HBoxContainer/Button6" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/MarginContainer/HBoxContainer/Button6" to="CanvasLayer/MarginContainer/HBoxContainer/Button6" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button6" to="CanvasLayer/MarginContainer/HBoxContainer/Button6" method="_on_pressed"]
 [connection signal="pressed" from="Camera2D/Menu/MarginContainer/VBoxContainer/Button" to="Camera2D/Menu/MarginContainer/VBoxContainer/Button" method="_on_pressed"]
 [connection signal="pressed" from="Camera2D/Menu/MarginContainer/VBoxContainer/Button2" to="Camera2D/Menu/MarginContainer/VBoxContainer/Button2" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button" to="CanvasLayer/MarginContainer/HBoxContainer/Button" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button2" to="CanvasLayer/MarginContainer/HBoxContainer/Button2" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button3" to="CanvasLayer/MarginContainer/HBoxContainer/Button3" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button4" to="CanvasLayer/MarginContainer/HBoxContainer/Button4" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button5" to="CanvasLayer/MarginContainer/HBoxContainer/Button5" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Button6" to="CanvasLayer/MarginContainer/HBoxContainer/Button6" method="_on_pressed"]

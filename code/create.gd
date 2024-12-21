@@ -3,6 +3,7 @@ extends Node2D
 const ITEM = preload("res://prefabs/mapItem.tscn")
 const KEY = preload("res://Key.gdshader")
 
+const BLACK_OPA = preload("res://img/blackOPA.png")
 const DARK = preload("res://img/dark.png")
 const ORANGE = preload("res://img/orange.png")
 const PINK = preload("res://img/pink.png")
@@ -18,6 +19,7 @@ func _ready():
 		for j in range(len(Global.map[i])):
 			if Global.map[i][j] == "E":
 				var item = ITEM.instantiate()
+				item.get_child(0).texture = BLACK_OPA
 				item.add_to_group(str(i)+ " " + str(j))
 				item.position += Vector2(sprite.get_rect().size.x * sprite.scale.x * j,sprite.get_rect().size.y * sprite.scale.x * i)
 				add_child(item)

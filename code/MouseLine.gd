@@ -16,5 +16,5 @@ func _process(delta):
 		queue_redraw() # Ensure the screen is cleared by triggering a redraw
 
 func _draw():
-	if point_a and point_b and !Global.is_create_menu_visible:
+	if point_a and point_b and !Global.is_create_menu_visible and Global.editor_motions:
 		draw_line(point_a, point_b, Color(0.48, 0.16, 0.8), 10)
