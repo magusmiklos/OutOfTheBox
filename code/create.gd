@@ -1,6 +1,8 @@
 extends Node2D
 const ITEM = preload("res://prefabs/mapItem.tscn")
 const DARK = preload("res://img/dark.png")
+const ORANGE = preload("res://img/orange.png")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var dummy = ITEM.instantiate()
@@ -14,9 +16,9 @@ func _ready():
 				item.add_to_group(str(i)+ " " + str(j))
 				item.position += Vector2(sprite.get_rect().size.x * sprite.scale.x * j,sprite.get_rect().size.y * sprite.scale.x * i)
 				add_child(item)
-			elif Global.map[i][j] == "X":
+			elif Global.map[i][j] == "S":
 				var item = ITEM.instantiate()
-				item.get_child(0).texture = DARK
+				item.get_child(0).texture = ORANGE
 				item.add_to_group(str(i)+ " " + str(j))
 				item.position += Vector2(sprite.get_rect().size.x * sprite.scale.x * j,sprite.get_rect().size.y * sprite.scale.x * i)
 				add_child(item)

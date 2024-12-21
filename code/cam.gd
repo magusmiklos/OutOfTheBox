@@ -7,6 +7,7 @@ var max_zoom = 3.0
 var min_pos = Vector2(-1000, -800)
 var max_pos = Vector2(1000, 800)
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
