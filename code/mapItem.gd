@@ -24,6 +24,9 @@ func _process(delta):
 
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
+	if Global.is_create_menu_visible:
+		return
+	
 	
 	if Input.is_action_just_pressed("click"):
 		texture = PURPLE
@@ -102,11 +105,34 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 				setSelfTexture(str(al[j])+" "+str(bl[i]),Global.editor_selected_block)
 				Global.created_map[al[j]][bl[i]] = Global.editor_selected_block
 				
+				
+	if Input.is_action_just_pressed("rightclick"):
+		Global.cd = get_parent().get_groups()[0].split(" ")
 	if Input.is_action_pressed("rightclick"):
 		var xy = get_parent().get_groups()[0].split(" ")
-		get_tree().get_nodes_in_group(str(int(xy[0]))+" "+str(int(xy[1])))[0].get_child(0).texture = null
-		get_tree().get_nodes_in_group(str(int(xy[0]))+" "+str(int(xy[1])))[0].get_child(0).material = null
-		Global.created_map[int(xy[0])][int(xy[1])] = "E"
+		
+		var a = int(Global.cd[0])
+		var b = int(Global.cd[1])
+		
+		var x = int(xy[0])
+		var y = int(xy[1])
+		
+		if x > a:
+			var temp = a
+			a = x
+			x = temp
+			
+		if y > b:
+			var temp = b
+			b = y
+			y = temp
+		
+		for i in range(len(Global.created_map)):
+			for j in range(len(Global.created_map[i])):
+				if i <= a and i >= x and j <= b and j >= y:
+					get_tree().get_nodes_in_group(str(i)+" "+str(j))[0].get_child(0).texture = null
+					get_tree().get_nodes_in_group(str(i)+" "+str(j))[0].get_child(0).material = null
+					Global.created_map[i][j] = "E"
 		
 		
 				
@@ -117,6 +143,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 
 
 func _on_area_2d_mouse_entered():
+	Global.editor_cursor = global_position
 	if texture == null or texture == NULL:
 		texture = GRAY
 

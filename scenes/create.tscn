@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://x8am7qlldoo0"]
+[gd_scene load_steps=19 format=3 uid="uid://x8am7qlldoo0"]
 
 [ext_resource type="Shader" path="res://main.gdshader" id="1_cbw4j"]
 [ext_resource type="Texture2D" uid="uid://78w4bsg8euhh" path="res://img/dark.png" id="2_vnuuv"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://bm80vpxne6xoj" path="res://img/pinkBtn.png" id="13_rtfg4"]
 [ext_resource type="Texture2D" uid="uid://1acque4a4pn7" path="res://img/lemonBtn.png" id="14_3tydg"]
 [ext_resource type="Texture2D" uid="uid://cfam6xy7eyfhq" path="res://img/keyBtn.png" id="15_xmrlg"]
+[ext_resource type="Script" path="res://code/MouseRect.gd" id="16_pryga"]
+[ext_resource type="Script" path="res://code/MouseLine.gd" id="17_8wiq4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n7oyy"]
 shader = ExtResource("1_cbw4j")
@@ -120,6 +122,22 @@ script = ExtResource("5_1ss3o")
 layout_mode = 2
 icon = ExtResource("15_xmrlg")
 script = ExtResource("5_1ss3o")
+
+[node name="MouseRect" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="MouseRect"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("16_pryga")
+
+[node name="Control2" type="Control" parent="MouseRect"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_8wiq4")
 
 [connection signal="pressed" from="Camera2D/Menu/MarginContainer/VBoxContainer/Button" to="Camera2D/Menu/MarginContainer/VBoxContainer/Button" method="_on_pressed"]
 [connection signal="pressed" from="Camera2D/Menu/MarginContainer/VBoxContainer/Button2" to="Camera2D/Menu/MarginContainer/VBoxContainer/Button2" method="_on_pressed"]

@@ -275,6 +275,9 @@ var is_chaos_selected = true
 var speed = 0.2
 
 var ab = null
+var cd = null
+
+var editor_cursor = null
 
 func reset_rules():
 	to = [
