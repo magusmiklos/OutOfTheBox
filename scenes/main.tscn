@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhx0a76rhka44"]
+[gd_scene load_steps=11 format=3 uid="uid://bhx0a76rhka44"]
 
 [ext_resource type="Script" path="res://code/Map.gd" id="1_pxx36"]
 [ext_resource type="Texture2D" uid="uid://78w4bsg8euhh" path="res://img/dark.png" id="2_dwqaa"]
@@ -6,6 +6,9 @@
 [ext_resource type="Shader" path="res://main.gdshader" id="3_jopdq"]
 [ext_resource type="Script" path="res://code/Menu.gd" id="5_hgid1"]
 [ext_resource type="Texture2D" uid="uid://d1nxhlxbfs018" path="res://img/night.png" id="6_ihm40"]
+[ext_resource type="Texture2D" uid="uid://cpqh00rgclxt6" path="res://img/darkBtn.png" id="7_6cqr3"]
+[ext_resource type="Script" path="res://code/selectBtn.gd" id="8_lhvwl"]
+[ext_resource type="Texture2D" uid="uid://bm80vpxne6xoj" path="res://img/pinkBtn.png" id="8_v5llv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_awqh0"]
 shader = ExtResource("3_jopdq")
@@ -43,6 +46,32 @@ script = ExtResource("5_hgid1")
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D/Menu"]
 scale = Vector2(10, 10)
 texture = ExtResource("6_ihm40")
+
+[node name="MarginContainer4" type="MarginContainer" parent="Camera2D/Menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = 150.0
+offset_right = 108.0
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/Menu/MarginContainer4"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Camera2D/Menu/MarginContainer4/HBoxContainer" groups=["0"]]
+layout_mode = 2
+icon = ExtResource("7_6cqr3")
+script = ExtResource("8_lhvwl")
+
+[node name="Button2" type="Button" parent="Camera2D/Menu/MarginContainer4/HBoxContainer" groups=["1"]]
+layout_mode = 2
+icon = ExtResource("8_v5llv")
+script = ExtResource("8_lhvwl")
 
 [node name="MarginContainer" type="MarginContainer" parent="Camera2D/Menu"]
 anchors_preset = 8
@@ -129,6 +158,8 @@ layout_mode = 2
 text = "Speed"
 
 [connection signal="timeout" from="MapTimer" to="Map" method="_on_timer_timeout"]
+[connection signal="pressed" from="Camera2D/Menu/MarginContainer4/HBoxContainer/Button" to="Camera2D/Menu/MarginContainer4/HBoxContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="Camera2D/Menu/MarginContainer4/HBoxContainer/Button2" to="Camera2D/Menu/MarginContainer4/HBoxContainer/Button2" method="_on_pressed"]
 [connection signal="pressed" from="Camera2D/Menu/MarginContainer/VBoxContainer/Button" to="Camera2D/Menu" method="_on_button_pressed"]
 [connection signal="pressed" from="Camera2D/Menu/MarginContainer/VBoxContainer/Button2" to="Camera2D/Menu" method="_on_button_2_pressed"]
 [connection signal="value_changed" from="Camera2D/Menu/MarginContainer2/VBoxContainer2/GridContainer/HSlider" to="Map" method="_on_h_slider_value_changed"]
