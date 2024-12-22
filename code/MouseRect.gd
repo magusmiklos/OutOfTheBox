@@ -22,4 +22,4 @@ func _draw():
 		# Calculate the size of the rectangle
 		var size: Vector2 = Vector2(abs(point_a.x - point_b.x), abs(point_a.y - point_b.y))
 		# Draw the rectangle
-		draw_rect(Rect2(top_left, size), Color(0, 0, 0, 0.5)) # Color can be changed as needed
+		draw_rect(Rect2(top_left, size), Color(1, 1, 1, 0.5)) # Color can be changed as needed

@@ -12,15 +12,6 @@ const GRAY = preload("res://img/gray.png")
 const BLACK_OPA = preload("res://img/blackOPA.png")
 const KEY = preload("res://Key.gdshader")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_action_just_released("click") and texture == PURPLE:
-		texture = BLACK_OPA
 
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
@@ -29,82 +20,39 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 	
 	
 	if Input.is_action_just_pressed("click"):
-		texture = PURPLE
 		Global.ab = get_parent().get_groups()[0].split(" ")
 
 	elif Input.is_action_just_released("click"):
 		var xy = get_parent().get_groups()[0].split(" ")
 		
-		var a = int(Global.ab[0])
-		var b = int(Global.ab[1])
-		
-		if Global.ab == xy:
-			if Global.editor_selected_block != "P" or !does_player_exists():
-				setSelfTexture(str(a)+" "+str(b),Global.editor_selected_block)
-				Global.created_map[a][b] = Global.editor_selected_block
-				return
-			else:
-				setSelfTexture(str(a)+" "+str(b),Global.created_map[a][b])
-				return
-		
 		var x = int(xy[0])
 		var y = int(xy[1])
 		
-		var al = [a]
-		var bl = [b]
+		if Global.editor_selected_block == "P" and !does_player_exists():
+			setSelfTexture(get_parent().get_groups()[0],Global.editor_selected_block)
+			Global.created_map[x][y] = Global.editor_selected_block
+			return
+		elif Global.editor_selected_block == "P" and does_player_exists():
+			return
 		
-		var astep = 1
-		if a > x:
-			astep = -1
-			
-		var bstep = 1
-		if b > y:
-			bstep = -1
+		var a = int(Global.ab[0])
+		var b = int(Global.ab[1])
 		
-		for i in range(a,x,astep):
-			if a < x:
-				a += 1
-			else:
-				a -= 1
-			al.append(a)
-		for i in range(b,y,bstep):
-			if b < y:
-				b += 1
-			else:
-				b -= 1
-			bl.append(b)
+		if x > a:
+			var temp = a
+			a = x
+			x = temp
+			
+		if y > b:
+			var temp = b
+			b = y
+			y = temp
 		
-
-		if len(al) == len(bl) and Global.editor_selected_block != "P":
-			for i in range(len(al)):
-				setSelfTexture(str(al[i])+" "+str(bl[i]),Global.editor_selected_block)
-				Global.created_map[al[i]][bl[i]] = Global.editor_selected_block
-
-
-		elif len(al) > len(bl) and Global.editor_selected_block != "P":
-			var adiv = int(ceil(float(len(al))/float(len(bl))))
-			
-			var j = -1
-			for i in range(len(al)):
-				if i % adiv == 0:
-					j += 1
-				if j > len(bl)-1:
-					j = len(bl)-1
-				setSelfTexture(str(al[i])+" "+str(bl[j]),Global.editor_selected_block)
-				Global.created_map[al[i]][bl[j]] = Global.editor_selected_block
-		elif Global.editor_selected_block != "P":
-			
-			var bdiv = int(ceil(float(len(bl))/float(len(al))))
-			
-			var j = -1
-			for i in range(len(bl)):
-				if i % bdiv == 0:
-					j += 1
-				if j > len(al)-1:
-					j = len(al)-1
-				setSelfTexture(str(al[j])+" "+str(bl[i]),Global.editor_selected_block)
-				Global.created_map[al[j]][bl[i]] = Global.editor_selected_block
-				
+		for i in range(len(Global.created_map)):
+			for j in range(len(Global.created_map[i])):
+				if i <= a and i >= x and j <= b and j >= y:
+					setSelfTexture(str(i)+" "+str(j),Global.editor_selected_block)
+					Global.created_map[i][j] = Global.editor_selected_block
 				
 	if Input.is_action_just_pressed("rightclick"):
 		Global.cd = get_parent().get_groups()[0].split(" ")
